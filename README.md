@@ -22,3 +22,6 @@ For a full working solution, also add this to the admin app, views/default/desig
 And you'll see:
 ![Admin App](https://github.com/willimoa/welcome_d3/blob/master/static/images/web2pyadmin_with_d3graph.png)
 
+##To do
+- [ ] Test with a more complex model (May need to change the sizing and force parameters)
+- [ ] Improve style of graph and hover text
