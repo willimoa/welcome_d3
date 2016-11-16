@@ -12,9 +12,10 @@ Based on the web2py welcome app, with the following additions:
 
 --* d3 style and script included in appadmin.html.  These could be split into separate files
 
-For a full working solution, also add this to the admin app, views/default/design.html:
+For a full working solution, also add this to the admin app, views/default/design.html after line 109:
 ```html
 {{=button(URL(a=app, c='appadmin',f='d3_graph_model'), T('d3 graph model'))}}
+```
 
 And you'll see:
 ![Admin App](https://github.com/willimoa/welcome_d3/blob/master/static/images/web2pyadmin_with_d3graph.png)
