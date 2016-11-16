@@ -354,7 +354,7 @@
 function strength(d) { return -500/d["linkcount"] ; }
 // link distance
 function distance(d) { return (d.source["linkcount"] + d.target["linkcount"]) * 5 ; }
-function strengthl(d) { return 0.1/(d.source["linkcount"] + d.target["linkcount"]) ; }
+function strengthl(d) { return 0.2/(d.source["linkcount"] + d.target["linkcount"]) ; }
 
 simulation
     .nodes(nodes)
