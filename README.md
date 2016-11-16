@@ -8,7 +8,7 @@ Based on the web2py welcome app, with the following additions:
 2. Added a models/sample_model.py for some extra tables
 3. Added d3_graph_model function to controlers/appadmin.py controller
 4. Updated views/appadmin.html
-  * d3 <style> and <script> included in appadmin.html.  These could be split into separate files
+  * d3 \<style\> and \<script\> included in appadmin.html.  These could be split into separate files
 
 5. Added some screenshots under /static/images
 
