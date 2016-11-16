@@ -265,9 +265,11 @@
 </div>
 
 <style>
-    .node {fill: lightgrey;
+    .node {fill: steelblue;
            stroke: #636363;
            stroke-width: 1px;}
+
+    .auth {fill: lightgrey;}
 
     .table {r: 10;}
 
@@ -334,11 +336,6 @@
         e.target["linkcount"]++;
     })
 
-    nodes.forEach(function(n) {
-      console.log(n.name);
-      console.log(n.name + " " + n["linkcount"]);
-    })
-
     var width = 960, height = 600;
     var svg = d3.select("#vis").append("svg")
             .attr("width", width)
@@ -389,6 +386,8 @@ simulation.force("link")
             .data(nodes)
             .enter().append("g")
             .attr("class", function(d) { return "node " + d.type;})
+            .attr("x", function(d) {return d.name.startsWith("auth") ? 0 : 960;})
+            .classed("auth", function(d) { return (d.name.startsWith("auth") ? true : false);})
             .call(d3.drag()
               .on("start", dragstarted)
               .on("drag", dragged)
