@@ -1,6 +1,6 @@
 #welcome_d3
 
-[[https://github.com/willimoa/welcome_d3/blob/master/static/images/web2py_d3graphmodel.png|alt=ScreenShot1]]
+![Screen Shot](https://github.com/willimoa/welcome_d3/blob/master/static/images/web2py_d3graphmodel.png)
 
 Based on the web2py welcome app, with the following additions:
 1. Added d3.min.js to static/js folder
