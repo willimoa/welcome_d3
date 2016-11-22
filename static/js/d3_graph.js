@@ -44,14 +44,15 @@ function d3_graph() {
     var simulation = d3.forceSimulation()
             .force("link", d3.forceLink().id(function(d) { return d.id; }))
             .force("charge", d3.forceManyBody().strength(strength))
-            .force("center", d3.forceCenter(width / 2, height / 2));
+            .force("center", d3.forceCenter(width / 2, height / 2))
+            .force("collision", d3.forceCollide(35));
 
-    // Node charge strength.  Stronger for less links.
-    function strength(d) { return -100/d["linkcount"] ; }
+    // Node charge strength.  Repel strength greater for less links.
+    function strength(d) { return -50/d["linkcount"] ; }
     // Link distance.  Distance increases with number of links at source and target
-    function distance(d) { return (d.source["linkcount"] + d.target["linkcount"]) * 1 ; }
-    // Link strength.  Strength is less for highly connected nodes (moves them apart)
-    function strengthl(d) { return 0.03/(d.source["linkcount"] + d.target["linkcount"]) ; }
+    function distance(d) { return (d.source["linkcount"] + d.target["linkcount"]) * 0.2 ; }
+    // Link strength.  Strength is less for highly connected nodes (move towards target dist)
+    function strengthl(d) { return 0.02/(d.source["linkcount"] + d.target["linkcount"]) ; }
 
     simulation
         .nodes(nodes)
@@ -86,22 +87,24 @@ function d3_graph() {
         .data(nodes)
         .enter().append("g")
         .attr("class", function(d) { return "node " + d.type;})
-        .attr("x", function(d) {return d.name.startsWith("auth") ? 0 : 960;})
-        .classed("auth", function(d) { return (d.name.startsWith("auth") ? true : false);})
-        .call(d3.drag()
+        .attr('transform', function(d) {
+            return "translate(" + d.name.startsWith("auth") ? 0 : width + "," + 0 + ")"; })
+        .classed("auth", function(d) { return (d.name.startsWith("auth") ? true : false);});
+
+    node.call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
 
     // add the nodes
     node.append('circle')
-        .attr('r', 20)
+        .attr('r', 16)
         ;
 
     // add text
     node.append("text")
-        .attr("x", 14)
-        .attr("dy", "-1.2em")
+        .attr("x", 12)
+        .attr("dy", "-1.1em")
         .text(function(d) {return d.name;});
 
     node.on("mouseover", function(d) {
