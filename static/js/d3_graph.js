@@ -91,7 +91,7 @@ function d3_graph() {
         .enter().append("g")
         .attr("class", function(d) { return "node " + d.type;})
         .attr('transform', function(d) {
-            return "translate(" + d.name.startsWith("auth") ? 0 : width + "," + 0 + ")"; })
+            return "translate(" + d.x + "," + d.y + ")"})
         .classed("auth", function(d) { return (d.name.startsWith("auth") ? true : false);});
 
     node.call(d3.drag()
@@ -117,23 +117,29 @@ function d3_graph() {
         // tooltip
 
         var fields = d.fields;
-        var fieldformat = "<TABLE>"
+        var fieldformat = "<TABLE>";
         fields.forEach(function(d) {
             fieldformat += "<TR><TD><B>"+ d.name+"</B></TD><TD>"+ d.type+"</TD><TD>"+ d.disp+"</TD></TR>";
         });
-        fieldformat += "</TABLE>"
+        fieldformat += "</TABLE>";
+        var tiplength = d.fields.length;
 
         // Define 'div' for tooltips
         var div = d3.select("body").append("div")  // declare the tooltip div
 	        .attr("class", "tooltip")              // apply the 'tooltip' class
             .style("opacity", 0)
             .html('<h5>' + d.name + '</h5>' + fieldformat)
-            .style("left", 10 + (d3.event.pageX) + "px")// or just (d.x + 50 + "px")
-            .style("top", (d3.event.pageY - 60) + "px")// or ...
+            .style("left", 20 + (d3.event.pageX) + "px")// or just (d.x + 50 + "px")
+            .style("top", tooltop(tiplength))// or ...
             .transition()
             .duration(800)
             .style("opacity", 0.9);
         });
+
+        function tooltop(tiplength) {
+           //aim to ensure tooltip is fully visible whenver possible
+           return (Math.max(d3.event.pageY - 20 - (tiplength * 14),0)) + "px"
+        }
 
         node.on("mouseout", function(d) {
             d3.select("body").select('div.tooltip').remove();
