@@ -1,4 +1,4 @@
-timestamp: 2015-08-26T15:48:18.022112
+timestamp: 2017-01-01T21:17:39.826000
 CREATE TABLE auth_user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name CHAR(128),
@@ -10,21 +10,21 @@ CREATE TABLE auth_user(
     registration_id CHAR(512)
 );
 success!
-timestamp: 2015-08-26T15:48:18.023859
+timestamp: 2017-01-01T21:17:39.858000
 CREATE TABLE auth_group(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role CHAR(512),
     description TEXT
 );
 success!
-timestamp: 2015-08-26T15:48:18.025240
+timestamp: 2017-01-01T21:17:39.876000
 CREATE TABLE auth_membership(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2015-08-26T15:48:18.026923
+timestamp: 2017-01-01T21:17:39.891000
 CREATE TABLE auth_permission(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  ,
@@ -33,7 +33,7 @@ CREATE TABLE auth_permission(
     record_id INTEGER
 );
 success!
-timestamp: 2015-08-26T15:48:18.028425
+timestamp: 2017-01-01T21:17:39.909000
 CREATE TABLE auth_event(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     time_stamp TIMESTAMP,
@@ -43,7 +43,7 @@ CREATE TABLE auth_event(
     description TEXT
 );
 success!
-timestamp: 2015-08-26T15:48:18.030022
+timestamp: 2017-01-01T21:17:39.927000
 CREATE TABLE auth_cas(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
@@ -53,14 +53,14 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
-timestamp: 2016-11-14T21:06:12.135604
+timestamp: 2017-01-01T21:17:39.952000
 CREATE TABLE person(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name CHAR(512),
     created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
 );
 success!
-timestamp: 2016-11-14T21:06:12.147874
+timestamp: 2017-01-01T21:17:39.967000
 CREATE TABLE thing(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     owner_id INTEGER REFERENCES person (id) ON DELETE CASCADE  ,
