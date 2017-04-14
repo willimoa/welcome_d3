@@ -1,10 +1,10 @@
 function d3_graph() {
 
 // Some reference links:
-// How to get link ids instead of index
-// http://stackoverflow.com/questions/23986466/d3-force-layout-linking-nodes-by-name-instead-of-index
-// embedding web2py in d3
-// http://stackoverflow.com/questions/34326343/embedding-d3-js-graph-in-a-web2py-bootstrap-page
+//   How to get link ids instead of index
+//     http://stackoverflow.com/questions/23986466/d3-force-layout-linking-nodes-by-name-instead-of-index
+//   embedding web2py in d3
+//     http://stackoverflow.com/questions/34326343/embedding-d3-js-graph-in-a-web2py-bootstrap-page
 
 // nodes and links are defined in appadmin.html <script>
 
@@ -51,11 +51,13 @@ function d3_graph() {
 
     // Node charge strength.  Repel strength greater for less links.
     //function strength(d) { return -50/d["linkcount"] ; }
-     function strength(d) { return -20 ; }
+    function strength(d) { return -25 ; } 
+    
     // Link distance.  Distance increases with number of links at source and target
-    function distance(d) { return (40 + (d.source["linkcount"] * d.target["linkcount"])) ; }
+    function distance(d) { return (60 + (d.source["linkcount"] * d.target["linkcount"])) ; }
+    
     // Link strength.  Strength is less for highly connected nodes (move towards target dist)
-    function strengthl(d) { return 10/(d.source["linkcount"] + d.target["linkcount"]) ; }
+    function strengthl(d) { return 5/(d.source["linkcount"] + d.target["linkcount"]) ; }
 
     simulation
         .nodes(nodes)
